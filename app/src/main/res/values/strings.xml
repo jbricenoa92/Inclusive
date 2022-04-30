@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Inclusive</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <array name="Lista">
+        <item>Español</item>
+        <item>Braille</item>
+        <item>Dactolológico</item>
+    </array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+
