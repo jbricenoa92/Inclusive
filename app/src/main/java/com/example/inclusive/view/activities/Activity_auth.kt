@@ -5,15 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.inclusive.R
+import com.example.inclusive.databinding.ActivityAuthBinding
+import com.example.inclusive.viewmodel.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
-import java.security.Provider
 
 class Activity_auth : AppCompatActivity() {
+
+    //Binding
+    private lateinit var binding:ActivityAuthBinding
+    private val authViewMode: AuthViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        binding=ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //authViewMode.
 
         setUp()
     }
@@ -21,22 +31,22 @@ class Activity_auth : AppCompatActivity() {
     //Check text fields
     fun setUp(){
 
-        var button_ingresar=findViewById<Button>(R.id.button_ingresar)
-        var button_registrar=findViewById<Button>(R.id.button_registrar)
-        var auth_email:EditText=findViewById(R.id.auth_email)
-        var auth_Password:EditText=findViewById(R.id.auth_Password)
+        var buttonIngresar=findViewById<Button>(R.id.button_ingresar)
+        var buttonRegistrar=findViewById<Button>(R.id.button_registrar)
+        var authEmail:EditText=findViewById(R.id.auth_email)
+        var authPassword:EditText=findViewById(R.id.auth_Password)
 
 
-        button_registrar.setOnClickListener{
+        buttonRegistrar.setOnClickListener{
             val activity_auth=Intent(this,Activity_register::class.java)
             startActivity(activity_auth)
         }
 
-        button_ingresar.setOnClickListener{
-            if (auth_email.text.isNotEmpty() && auth_Password.text.isNotEmpty()){
+        buttonIngresar.setOnClickListener{
+            if (authEmail.text.isNotEmpty() && authPassword.text.isNotEmpty()){
 
                 FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(auth_email.text.toString(),auth_Password.text.toString())
+                    .signInWithEmailAndPassword(authEmail.text.toString(),authPassword.text.toString())
                     .addOnCompleteListener{
                         if(it.isSuccessful){
                             show_home(it.result?.user?.email?:"",ProviderType.BASIC)

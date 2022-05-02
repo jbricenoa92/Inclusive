@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.inclusive.R
+import com.example.inclusive.viewmodel.user.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class Activity_register : AppCompatActivity() {
+
+    private val userViewModel: UserViewModel by viewModels( )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -21,17 +26,16 @@ class Activity_register : AppCompatActivity() {
     fun setUp(){
 
         val registerName:EditText=findViewById(R.id.register_name)
-        val authEmail: EditText =findViewById(R.id.register_email)
+        val registerEmail: EditText =findViewById(R.id.register_email)
         val registerPassword:EditText=findViewById(R.id.register_password)
-        var authPassword: EditText =findViewById(R.id.auth_Password)
-        var confirmRegister_button:EditText=findViewById(R.id.register_confirm_password)
+        var confirmRegisterButton:EditText=findViewById(R.id.register_confirm_password)
         val buttonRegistrar: Button =findViewById(R.id.confirm_register_button)
 
         buttonRegistrar.setOnClickListener{
-            if (authEmail.text.isNotEmpty() && authPassword.text.isNotEmpty()){
+            if (registerEmail.text.isNotEmpty() && confirmRegisterButton.text.isNotEmpty()){
 
                 FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(authEmail.text.toString(),authPassword.text.toString())
+                    .createUserWithEmailAndPassword(registerEmail.text.toString(),confirmRegisterButton.text.toString())
                     .addOnCompleteListener{
                         if(it.isSuccessful){
                             show_home(it.result?.user?.email?:"",ProviderType.BASIC)

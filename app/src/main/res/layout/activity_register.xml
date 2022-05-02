@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_register"
     tools:context=".view.activities.Activity_register"
     android:background="@color/principal">
 
@@ -40,7 +41,7 @@
         android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Nombre"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:text="Nombre"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.505"
@@ -54,7 +55,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Correo"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/register_name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/register_name"
