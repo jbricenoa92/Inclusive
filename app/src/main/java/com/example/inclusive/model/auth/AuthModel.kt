@@ -1,3 +1,4 @@
 package com.example.inclusive.model.auth
 
-data class AuthModel (val correo:String, val contraseña:String )
+data class AuthModel (val correo:String, val contraseña:String,val estate:Boolean=false )
+

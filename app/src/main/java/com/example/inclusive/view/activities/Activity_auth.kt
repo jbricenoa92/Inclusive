@@ -44,17 +44,7 @@ class Activity_auth : AppCompatActivity() {
 
         buttonIngresar.setOnClickListener{
             if (authEmail.text.isNotEmpty() && authPassword.text.isNotEmpty()){
-
-                FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(authEmail.text.toString(),authPassword.text.toString())
-                    .addOnCompleteListener{
-                        if(it.isSuccessful){
-                            show_home(it.result?.user?.email?:"",ProviderType.BASIC)
-                        }else{
-                            showAlert("Error en autenticacion")
-                        }
-                    }
-
+               // if()
 
             }else{
                 showAlert("Campos vacios")
@@ -83,8 +73,10 @@ class Activity_auth : AppCompatActivity() {
         startActivity(homeIntent)
      }
 
-    private fun show_register(){
+    private fun show_register(correo:String,contraseña:String){
         val activity_auth=Intent(this,Activity_register::class.java)
+        activity_auth.putExtra("correo",correo)
+        activity_auth.putExtra("contraseña",contraseña)
         startActivity(activity_auth)
     }
 }
