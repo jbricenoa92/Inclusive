@@ -3,12 +3,15 @@ package com.example.inclusive.view.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
 import com.example.inclusive.R
 import com.example.inclusive.databinding.ActivityAuthBinding
+import com.example.inclusive.model.auth.AuthModel
 import com.example.inclusive.viewmodel.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,13 +20,16 @@ class Activity_auth : AppCompatActivity() {
     //Binding
     private lateinit var binding:ActivityAuthBinding
     private val authViewMode: AuthViewModel by viewModels()
-
+    var accessauth:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //authViewMode.
+        authViewMode.authModel.observe(this, Observer {access->
+            Log.d("getaccess", access.estate.toString())
+            accessauth=access.estate
+        })
 
         setUp()
     }
@@ -37,25 +43,29 @@ class Activity_auth : AppCompatActivity() {
         var authPassword:EditText=findViewById(R.id.auth_Password)
 
 
-        buttonRegistrar.setOnClickListener{
+        binding.buttonRegistrar.setOnClickListener{
             val activity_auth=Intent(this,Activity_register::class.java)
             startActivity(activity_auth)
         }
 
-        buttonIngresar.setOnClickListener{
+        binding.buttonIngresar.setOnClickListener{
+
             if (authEmail.text.isNotEmpty() && authPassword.text.isNotEmpty()){
-               // if()
+                authViewMode.getAuthViewModel(authEmail.text.toString(),authPassword.text.toString())
+               if(accessauth){
+                   show_home(authEmail.text.toString(),ProviderType.BASIC)
+
+
+               }else{
+
+                   showAlert("Error de autenticacion")
+               }
 
             }else{
                 showAlert("Campos vacios")
             }
-
-
         }
-
     }
-
-
     private  fun showAlert(message:String){
         val builder=AlertDialog.Builder(this)
         builder.setTitle("Error")

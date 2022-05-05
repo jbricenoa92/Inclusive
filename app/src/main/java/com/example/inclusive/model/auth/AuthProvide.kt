@@ -1,30 +1,25 @@
 package com.example.inclusive.model.auth
 
+
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthProvide {
     companion object{
-
-        fun getAuthModel(correo:String,contraseña:String):AuthModel{
-
-            val au:AuthModel=AuthModel(correo,contraseña, getauthProvider())
-
+        fun getAuthModel(correo:String,contraseña:String,access:Boolean):AuthModel{
+           // Log.d("getprovider1", au.estate.toString())
+           var au=AuthModel(correo,contraseña,true)
           return au
 
         }
-private fun getauthProvider():Boolean{
-            var result:Boolean=true
-
+        fun getauthProvider(correo:String,contraseña:String){
             FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword("authEmail.text.toString()","authPassword.text.toString()")
+                .signInWithEmailAndPassword(correo,contraseña)
                 .addOnCompleteListener{
-                    if(it.isSuccessful){
 
-                    }else{
-
-                    }
+                if( it.isSuccessful){
+                    getAuthModel(correo,contraseña,true)
                 }
-            return result
+                }
         }
 
     }
