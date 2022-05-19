@@ -4,14 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.15705128205128205" />
+        <entry key="../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.22916666666666666" />
+        <entry key="app/src/main/res/drawable/b_lleno.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/border_raius.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.119" />
+        <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/ic_user.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/upload_background.xml" value="0.126" />
+        <entry key="app/src/main/res/drawable/upload_foreground.xml" value="0.126" />
+        <entry key="app/src/main/res/font/isc.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_braile_leer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18614130434782608" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_auth2.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_auth2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_show.xml" value="0.21502771792204486" />
+        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/teclado_braile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/teclado_dactilologico.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.11510416666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.119" />
       </map>
     </option>
   </component>

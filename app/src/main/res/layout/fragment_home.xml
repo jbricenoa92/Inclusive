@@ -1,78 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.fragments.HomeFragment">
 
-    <Spinner
-        android:id="@+id/spinner_1"
-        android:layout_width="wrap_content"
-        android:layout_height="53dp"
-        android:layout_margin="3dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/Linearoptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d8e8eb"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Spinner
+            android:id="@+id/spinner_1"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_margin="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/logo_change"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_margin="3dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:src="@drawable/icon_compare_arrows"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner_1"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_2"
-        app:layout_constraintStart_toEndOf="@+id/spinner_1"
-        app:layout_constraintTop_toTopOf="@+id/spinner_1" />
+        <ImageView
+            android:id="@+id/logo_change"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_margin="3dp"
+            android:layout_marginStart="1dp"
 
-    <Spinner
-        android:id="@+id/spinner_2"
-        android:layout_width="wrap_content"
-        android:layout_height="53dp"
-        android:layout_margin="3dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+            android:layout_marginEnd="1dp"
+            android:src="@drawable/icon_compare_arrows"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_1"
+            app:layout_constraintEnd_toStartOf="@+id/spinner_2"
+            app:layout_constraintStart_toEndOf="@+id/spinner_1"
+            app:layout_constraintTop_toTopOf="@+id/spinner_1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/spinner_2"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_margin="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_change"
+            app:layout_constraintTop_toTopOf="@+id/logo_change" />
+
+    </LinearLayout>
+
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="409dp"
-        android:layout_height="66dp"
+        android:id="@+id/getText_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
         android:gravity="center"
         android:hint="Ingrese el texto"
-        android:maxLength="25"
         android:imeOptions="actionDone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_1" />
-
-
+        android:maxLength="25"
+        android:textAlignment="center" />
 
     <ImageView
-        android:id="@+id/showgif"
+        android:id="@+id/showsignal"
         android:layout_width="410dp"
         android:layout_height="462dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:layout_marginBottom="3dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

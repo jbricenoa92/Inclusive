@@ -2,26 +2,51 @@
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.inclusive.R
-import com.example.inclusive.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.inclusive.view.fragments.HomeFragment
+import com.example.inclusive.view.fragments.upload_Fragment
+import kotlinx.android.synthetic.main.activity_main.*
 
-    enum class ProviderType{
-        BASIC
-    }
-@AndroidEntryPoint
     class MainActivity : AppCompatActivity() {
 
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
+          loadFragment(HomeFragment.newInstance())
+
+            buttonnavigationView.setOnItemSelectedListener { view ->
+                var fragment: Fragment
+                when (view.itemId) {
+                    R.id.navigation_upload -> {
+                      fragment = upload_Fragment()
+                        loadFragment(fragment)
+                        true
+                    }
+                    R.id.navigation_translate -> {
+                        fragment = HomeFragment()
+                        loadFragment(fragment)
+                        true
+                    }
+                    R.id.navigation_logout -> {
+
+                        Toast.makeText(this, "Salir", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
+
+            }
+       }
+
+        private fun loadFragment(fragment: Fragment) {
+            // load fragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView2, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
-
-}
-
 

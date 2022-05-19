@@ -1,12 +1,9 @@
 package com.example.inclusive.viewmodel.auth
 
-import android.app.Application
+
 import android.content.Context
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import com.example.inclusive.model.repository.AuthRepository
 import com.google.firebase.auth.FirebaseUser
 
@@ -18,8 +15,6 @@ class AuthViewModel :ViewModel{
     private var _userData: MutableLiveData<FirebaseUser>
       val getuserData:MutableLiveData<FirebaseUser>
        get() = _userData
-
-
 
     private var _loggerStatus: MutableLiveData<Boolean>
     val loggerStatus:MutableLiveData<Boolean>
@@ -40,6 +35,5 @@ class AuthViewModel :ViewModel{
     fun logout(){
         authRepository.logout()
     }
-
 
 }

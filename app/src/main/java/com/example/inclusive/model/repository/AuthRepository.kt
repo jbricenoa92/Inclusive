@@ -1,13 +1,8 @@
 package com.example.inclusive.model.repository
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.inclusive.R
-import com.example.inclusive.view.fragments.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
