@@ -5,6 +5,8 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class AuthRepository {
@@ -28,7 +30,7 @@ class AuthRepository {
 
        auth= FirebaseAuth.getInstance()
 
-       if(auth != null){
+       if(auth.currentUser != null){
            _firebaseUserMutableLiveData.postValue(auth.currentUser)
        }
    }
@@ -63,8 +65,8 @@ class AuthRepository {
     }
 
     fun logout(){
-        auth.signOut()
-        _userLoggedMutableLiveData.postValue(true)
+        Firebase.auth.signOut()
+          _userLoggedMutableLiveData.postValue(true)
     }
 
 
