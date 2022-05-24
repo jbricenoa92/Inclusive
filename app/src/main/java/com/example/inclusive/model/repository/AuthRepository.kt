@@ -66,7 +66,7 @@ class AuthRepository {
 
     fun logout(){
         Firebase.auth.signOut()
-          _userLoggedMutableLiveData.postValue(true)
+        _userLoggedMutableLiveData.postValue(true)
     }
 
 

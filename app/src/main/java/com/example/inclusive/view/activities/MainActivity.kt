@@ -3,24 +3,17 @@
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
 import com.example.inclusive.R
-import com.example.inclusive.model.repository.AuthRepository
 import com.example.inclusive.view.fragments.HomeFragment
 import com.example.inclusive.view.fragments.upload_Fragment
 import com.example.inclusive.viewmodel.auth.AuthViewModel
-import com.google.firebase.storage.FirebaseStorage
+
 import kotlinx.android.synthetic.main.activity_main.*
+
 
     class MainActivity : AppCompatActivity() {
 
@@ -34,10 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
                 intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
             })
-
-
-          loadFragment(HomeFragment.newInstance())
-
+            loadFragment(HomeFragment.newInstance())
             buttonnavigationView.setOnItemSelectedListener { view ->
                 var fragment: Fragment
                 when (view.itemId) {
@@ -57,17 +47,16 @@ import kotlinx.android.synthetic.main.activity_main.*
                     }
                     else -> false
                 }
-
             }
-
        }
 
         private fun loadFragment(fragment: Fragment) {
             // load fragment
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView2, fragment)
-                .addToBackStack(null)
+                .remove(upload_Fragment())
+                .replace(R.id.optionstranslate, fragment)
                 .commit()
         }
+
     }
 

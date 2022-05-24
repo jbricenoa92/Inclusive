@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -20,8 +19,6 @@ import com.example.inclusive.view.activities.MainActivity
 
 import com.example.inclusive.viewmodel.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class FragmentAuth : Fragment() {
@@ -62,26 +59,22 @@ class FragmentAuth : Fragment() {
 
 
        if(view !=null ){
-            viewModel.getuserData.observe(viewLifecycleOwner) { firebaseUser ->
-                var authemailt = auth_emailt.text.toString()
-                if(Firebase.auth.currentUser != null){
-                    if (firebaseUser.email == authemailt ) {
+            viewModel.getuserData.observe(viewLifecycleOwner,Observer<FirebaseUser>{firebaseUser->
+                var authemailt=auth_emailt.text.toString()
+
+                    if(firebaseUser.email==authemailt){
                         //    Log.e("observer2",firebaseUser.email.toString())
                         //   Log.e("observer2",firebaseUser.toString())
                         val fragment = HomeFragment()
-                        val transaction = fragmentManager?.beginTransaction()
+                        val transaction =  fragmentManager?.beginTransaction()
                         //transaction?.replace(R.id.fragmentContainerView2, fragment)?.commit()
                         intent = Intent(this.context, MainActivity::class.java).apply {
                             putExtra("Correo", firebaseUser.email.toString())
                         }
                         startActivity(intent)
                     }
-                    else {
-                        Toast.makeText(context, "Error de conexion Firebase", Toast.LENGTH_SHORT).show()
-                    }
-                }
-           }
-       }
+          })
+        }
 
         button_ingresar.setOnClickListener(View.OnClickListener {
             var authemailt=auth_emailt.text.toString()
