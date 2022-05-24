@@ -3,6 +3,12 @@
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -13,6 +19,7 @@ import com.example.inclusive.model.repository.AuthRepository
 import com.example.inclusive.view.fragments.HomeFragment
 import com.example.inclusive.view.fragments.upload_Fragment
 import com.example.inclusive.viewmodel.auth.AuthViewModel
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 
     class MainActivity : AppCompatActivity() {
@@ -52,6 +59,7 @@ import kotlinx.android.synthetic.main.activity_main.*
                 }
 
             }
+
        }
 
         private fun loadFragment(fragment: Fragment) {
