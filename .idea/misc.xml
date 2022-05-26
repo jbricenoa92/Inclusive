@@ -22,6 +22,10 @@
         <entry key="app/src/main/res/layout/fragment_auth2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_show.xml" value="0.21502771792204486" />
+        <entry key="app/src/main/res/layout/fragment_t_dagtil.xml" value="0.12697734074390765" />
+        <entry key="app/src/main/res/layout/fragment_tdagtil.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_teclado_braille.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_teclado_dagtilologico.xml" value="0.10773834972210346" />
         <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_vacio.xml" value="0.1078125" />
         <entry key="app/src/main/res/layout/teclado_braile.xml" value="0.25" />
