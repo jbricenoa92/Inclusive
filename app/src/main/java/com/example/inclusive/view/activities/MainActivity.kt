@@ -4,20 +4,16 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.example.inclusive.R
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.hideKeyboard
-import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.showKeyboard
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.toggleSoftInput
-import com.example.inclusive.view.fragments.HomeFragment
-import com.example.inclusive.view.fragments.tecladoBrailleFragment
-import com.example.inclusive.view.fragments.tDagtiloFragment
-import com.example.inclusive.view.fragments.upload_Fragment
+import com.example.inclusive.view.fragments.*
 import com.example.inclusive.viewmodel.auth.AuthViewModel
 import com.example.inclusive.viewmodel.auth.HomeViewModel
 
@@ -38,12 +34,11 @@ import kotlinx.android.synthetic.main.activity_main.*
                 startActivity(intent)
             })
 
-            homeviewModel.selectedItem.observe(this, Observer {
+            var teclado=homeviewModel.selectedItem.observe(this, Observer {
                 var fragment: Fragment
-                Log.e("itimprimir",it.toString())
+                // Log.e("itimprimir",it.toString())
                 when (it){
                     0->{
-
                         toggleSoftInput(activity_main.findViewById(R.id.showteclado))
                     }
                     1 ->{
@@ -62,33 +57,24 @@ import kotlinx.android.synthetic.main.activity_main.*
             navigationBar()
 
        }
-        private fun loadFragmentnavBar(fragment: Fragment) {
-            // load fragment
-            supportFragmentManager.beginTransaction()
-                .remove(upload_Fragment())
-                .replace(R.id.optionstranslate, fragment)
-                .commit()
-        }
 
-        private fun loadFragmentnavOptionTranstale(fragment: Fragment) {
-            // load fragment
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.showteclado, fragment)
-                .commit()
-        }
 
-        private fun navigationBar(){
+
+        private fun navigationBar() {
             buttonnavigationView.setOnItemSelectedListener { view ->
                 var fragment: Fragment
                 when (view.itemId) {
                     R.id.navigation_upload -> {
                         fragment = upload_Fragment()
+
                         loadFragmentnavBar(fragment)
+
                         true
                     }
                     R.id.navigation_translate -> {
                         fragment = HomeFragment()
                         loadFragmentnavBar(fragment)
+                        KeyboardktUtils.showKeyboard(activity_main.findViewById(R.id.showteclado))
                         true
                     }
                     R.id.navigation_logout -> {
@@ -105,10 +91,8 @@ import kotlinx.android.synthetic.main.activity_main.*
             fun showKeyboard(view: View) {
                 val imm = view.context
                     .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                if (imm != null) {
-                    view.requestFocus()
                     imm.showSoftInput(view, 0)
-                }
+
             }
 
             fun hideKeyboard(view: View) {
@@ -122,6 +106,41 @@ import kotlinx.android.synthetic.main.activity_main.*
                     .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm?.toggleSoftInput(0, 0)
             }
+        }
+
+        private fun loadFragmentnavBar(fragment: Fragment) {
+            // load fragment
+            supportFragmentManager.beginTransaction()
+                .remove(upload_Fragment())
+                .replace(R.id.optionstranslate, fragment)
+                .commit()
+        }
+
+
+
+        private fun loadFragmentnavOptionTranstale(fragment: Fragment) {
+            // load fragment
+            supportFragmentManager.beginTransaction()
+                .remove(upload_Fragment())
+                .replace(R.id.showteclado, fragment)
+                .commit()
+        }
+        private fun loadFragmentnavshowTeclado(fragment: Fragment) {
+            // load fragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.showteclado, fragment)
+                .commit()
+        }
+
+        private fun removeFragmentnavshowTeclado() {
+            // load fragment
+            val fragment =supportFragmentManager.findFragmentByTag("uploadname")
+                    fragment?.let {
+                        val transaction=supportFragmentManager.beginTransaction()
+                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        transaction.remove(it).commitAllowingStateLoss()
+                    }
+
         }
 
 

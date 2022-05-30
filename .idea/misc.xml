@@ -26,7 +26,8 @@
         <entry key="app/src/main/res/layout/fragment_tdagtil.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_teclado_braille.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_teclado_dagtilologico.xml" value="0.10773834972210346" />
-        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_upload_name.xml" value="0.20521590423257802" />
         <entry key="app/src/main/res/layout/fragment_vacio.xml" value="0.1078125" />
         <entry key="app/src/main/res/layout/teclado_braile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/teclado_dactilologico.xml" value="0.25" />
