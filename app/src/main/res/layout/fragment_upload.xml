@@ -12,22 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cargar Imagen"
+        android:layout_margin="10dp"
         android:textAlignment="center"
         android:textSize="20dp" />
     <ImageButton
         android:id="@+id/imageViewUpload"
         android:layout_width="225dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:background="@drawable/b_nada"
         android:src="@drawable/upload_foreground"/>
 
+    <EditText
+        android:id="@+id/cargarname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:hint="Ingresar nombre de la señal"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
     <Button
-        android:id="@+id/buttonUpload"
+        android:id="@+id/buttonSendImages"
         android:layout_width="116dp"
         android:layout_height="56dp"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:background="@drawable/border_raius"
         android:text="Enviar"
         android:textAlignment="center" />

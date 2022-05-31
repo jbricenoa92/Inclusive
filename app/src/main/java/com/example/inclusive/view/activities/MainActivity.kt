@@ -34,25 +34,25 @@ import kotlinx.android.synthetic.main.activity_main.*
                 startActivity(intent)
             })
 
-            var teclado=homeviewModel.selectedItem.observe(this, Observer {
+            var teclado=homeviewModel.selectedItem.observe(this) {
                 var fragment: Fragment
                 // Log.e("itimprimir",it.toString())
-                when (it){
-                    0->{
+                when (it) {
+                    0 -> {
                         toggleSoftInput(activity_main.findViewById(R.id.showteclado))
                     }
-                    1 ->{
+                    1 -> {
                         hideKeyboard(activity_main.findViewById(R.id.showteclado))
                         fragment = tecladoBrailleFragment()
-                       loadFragmentnavOptionTranstale(fragment)
+                        loadFragmentnavOptionTranstale(fragment)
                     }
-                    2 ->{
+                    2 -> {
                         hideKeyboard(activity_main.findViewById(R.id.showteclado))
                         fragment = tDagtiloFragment()
                         loadFragmentnavOptionTranstale(fragment)
                     }
                 }
-            })
+            }
             loadFragmentnavBar(HomeFragment.newInstance())
             navigationBar()
 
@@ -115,8 +115,6 @@ import kotlinx.android.synthetic.main.activity_main.*
                 .replace(R.id.optionstranslate, fragment)
                 .commit()
         }
-
-
 
         private fun loadFragmentnavOptionTranstale(fragment: Fragment) {
             // load fragment

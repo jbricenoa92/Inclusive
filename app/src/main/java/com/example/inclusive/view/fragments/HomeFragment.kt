@@ -17,12 +17,6 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,18 +33,15 @@ class HomeFragment : Fragment() {
         val storage = FirebaseStorage.getInstance().getReference()
         val ONE_MEGABYTE: Long = 1024 * 1024
 
-        edittext.setOnKeyListener(
-            View.OnKeyListener
-            { v, keyCode, event ->
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    val getSpinner1: String = spLista.selectedItem.toString()
-                    val getSpinner2: String = spLista2.selectedItem.toString()
+        edittext.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val getSpinner1: String = spLista.selectedItem.toString()
+                val getSpinner2: String = spLista2.selectedItem.toString()
 
-                }
-                false
-            })
+            }
+            false
+        }
 
-// Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.Lista,
