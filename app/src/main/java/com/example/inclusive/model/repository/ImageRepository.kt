@@ -17,14 +17,14 @@ class ImageRepository {
         var firebasestoreMutable:MutableLiveData<Boolean>
         get() = _firebasestoreMutable
 
-
-
-
-
-
+    var storage = Firebase.storage
 
     constructor(){
         this.firebasestoreMutable=MutableLiveData()
+    }
+
+    fun uploadtoFirebase (){
+
     }
 
 
