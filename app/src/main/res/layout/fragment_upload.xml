@@ -19,7 +19,8 @@
         android:layout_width="225dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:src="@drawable/upload_foreground" />
+        android:background="@drawable/b_nada"
+        android:src="@drawable/upload_foreground"/>
 
     <Button
         android:id="@+id/buttonUpload"
