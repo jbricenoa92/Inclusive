@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
         spLista2 = view.findViewById(R.id.spinner_2)
         editText= view.findViewById(R.id.getText_home)
         buttonflot=view.findViewById(R.id.buttonfab)
+        //Botones del teclado Braille
 
         Spinner1()
         Spinner2()
@@ -82,6 +83,7 @@ class HomeFragment : Fragment() {
                     initRecyclerViewEspaol()
                 }
                 "01"->{
+                    BrailleProvider.brailleList.clear()
                     translateEspanoltoBraille()
                   }
 
@@ -118,6 +120,7 @@ class HomeFragment : Fragment() {
             adapter=EspaolAdapter(EspaolProvider.espaolList)
         }
     }
+
     private fun initRecyclerViewbraille(){
 
         recyclerViewshow.apply {

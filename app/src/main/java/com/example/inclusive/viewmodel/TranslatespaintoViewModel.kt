@@ -20,19 +20,19 @@ class TranslatespaintoViewModel:ViewModel() {
     fun setObtener(texto:String){
 
         if(texto !=null){
-            var brailleListtoletras: MutableList<String> = mutableListOf()
             for(char in texto){
-                brailleListtoletras.add(char.toString())
-                var  braille= Braille(char.toString(),char.toString())
-                brailleList.add(braille)
+
+                if(char.toString()==" "){
+                    Log.e("char",char.toString())
+                }else{
+
+                    var  braille= Braille(char.toString(),char.toString())
+                    brailleList.add(braille)
+                }
+
             }
             _obtenerMutable.postValue(texto)
-
-
-
         }
-
-
     }
 
 }
