@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import com.example.inclusive.R
 import com.example.inclusive.view.activities.MainActivity
 
-import com.example.inclusive.viewmodel.auth.AuthViewModel
+import com.example.inclusive.viewmodel.AuthViewModel
 import com.google.firebase.auth.FirebaseUser
 
 
@@ -28,7 +28,7 @@ class FragmentAuth : Fragment() {
     private lateinit var auth_Password:EditText
     private lateinit var button_ingresar:Button
     private lateinit var button_registrar:Button
-    private val viewModel:AuthViewModel by activityViewModels()
+    private val viewModel: AuthViewModel by activityViewModels()
     private lateinit var navController: NavController
     private lateinit var intent:Intent
 
@@ -63,11 +63,10 @@ class FragmentAuth : Fragment() {
                 var authemailt=auth_emailt.text.toString()
 
                     if(firebaseUser.email==authemailt){
-                        //    Log.e("observer2",firebaseUser.email.toString())
-                        //   Log.e("observer2",firebaseUser.toString())
+
                         val fragment = HomeFragment()
                         val transaction =  fragmentManager?.beginTransaction()
-                        //transaction?.replace(R.id.fragmentContainerView2, fragment)?.commit()
+
                         intent = Intent(this.context, MainActivity::class.java).apply {
                             putExtra("Correo", firebaseUser.email.toString())
                         }

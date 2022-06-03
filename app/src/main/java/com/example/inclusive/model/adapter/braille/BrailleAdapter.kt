@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inclusive.R
 import com.example.inclusive.model.provider.braille.Braille
 
-class BrailleAdapter(val listBraille:List<Braille>):RecyclerView.Adapter<BrailleViewHolder>() {
+class BrailleAdapter(val listBraille:MutableList<Braille>):RecyclerView.Adapter<BrailleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrailleViewHolder {
 
         val layoutInflater= LayoutInflater.from(parent.context)

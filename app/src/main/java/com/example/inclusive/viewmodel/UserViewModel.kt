@@ -1,4 +1,4 @@
-package com.example.inclusive.viewmodel.user
+package com.example.inclusive.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

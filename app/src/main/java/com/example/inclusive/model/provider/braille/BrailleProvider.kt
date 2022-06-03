@@ -1,13 +1,16 @@
 package com.example.inclusive.model.provider.braille
 
-import com.example.inclusive.model.provider.espaol.Espaol
+import androidx.lifecycle.MutableLiveData
+
 
 class BrailleProvider {
 
     companion object{
-        val brailleList= listOf(
-            Braille("1","1"),
+        var brailleList: MutableList<Braille> = mutableListOf()
 
-        )
+
+
     }
+
+
 }

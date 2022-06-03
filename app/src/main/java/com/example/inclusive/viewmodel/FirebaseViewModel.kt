@@ -1,4 +1,4 @@
-package com.example.inclusive.viewmodel.auth
+package com.example.inclusive.viewmodel
 
 import android.app.Activity
 import android.content.Context

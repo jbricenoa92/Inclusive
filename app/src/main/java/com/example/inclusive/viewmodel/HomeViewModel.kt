@@ -1,4 +1,4 @@
-package com.example.inclusive.viewmodel.auth
+package com.example.inclusive.viewmodel
 
 import android.widget.AdapterView
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 
 
 class HomeViewModel:ViewModel() {
-
-
 
     private val _selectedItem1= MutableLiveData<Int>()
     val selectedItem1: MutableLiveData<Int>

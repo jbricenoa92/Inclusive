@@ -16,7 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.inclusive.R
-import com.example.inclusive.viewmodel.auth.FirebaseViewModel
+import com.example.inclusive.viewmodel.FirebaseViewModel
 
 
 class upload_Fragment : Fragment() {

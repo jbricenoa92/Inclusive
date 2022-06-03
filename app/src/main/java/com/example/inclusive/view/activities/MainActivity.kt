@@ -7,23 +7,21 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.example.inclusive.R
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.hideKeyboard
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.toggleSoftInput
 import com.example.inclusive.view.fragments.*
-import com.example.inclusive.viewmodel.auth.AuthViewModel
-import com.example.inclusive.viewmodel.auth.HomeViewModel
+import com.example.inclusive.viewmodel.AuthViewModel
+import com.example.inclusive.viewmodel.HomeViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 
     class MainActivity : AppCompatActivity() {
 
-        private val viewModel:AuthViewModel by viewModels()
+        private val viewModel: AuthViewModel by viewModels()
         private val homeviewModel: HomeViewModel by viewModels()
 
         override fun onCreate(savedInstanceState: Bundle?) {

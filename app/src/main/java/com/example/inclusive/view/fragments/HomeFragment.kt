@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.compose.ui.text.toUpperCase
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,18 +17,22 @@ import com.example.inclusive.R
 import com.example.inclusive.model.adapter.braille.BrailleAdapter
 import com.example.inclusive.model.adapter.translate.EspaolAdapter
 import com.example.inclusive.model.adapter.translate.EspaolViewHolder
+import com.example.inclusive.model.provider.braille.Braille
 import com.example.inclusive.model.provider.braille.BrailleProvider
 import com.example.inclusive.model.provider.espaol.EspaolProvider
-import com.example.inclusive.viewmodel.auth.HomeViewModel
+import com.example.inclusive.viewmodel.HomeViewModel
+import com.example.inclusive.viewmodel.TranslatespaintoViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
 
     private val HomeviewModel: HomeViewModel by activityViewModels()
+    private val translatespaintoViewModel:TranslatespaintoViewModel by activityViewModels()
     private lateinit var editText:EditText
     private lateinit var spLista: Spinner
     private lateinit var spLista2: Spinner
+    private lateinit var buttonflot:View
     var layoutManager:RecyclerView.LayoutManager?=null
     var adapter:RecyclerView.Adapter<EspaolViewHolder>?=null
 
@@ -43,6 +48,8 @@ class HomeFragment : Fragment() {
         spLista = view.findViewById(R.id.spinner_1)
         spLista2 = view.findViewById(R.id.spinner_2)
         editText= view.findViewById(R.id.getText_home)
+        buttonflot=view.findViewById(R.id.buttonfab)
+
         Spinner1()
         Spinner2()
 
@@ -75,11 +82,13 @@ class HomeFragment : Fragment() {
                     initRecyclerViewEspaol()
                 }
                 "01"->{
-                    translateEspaolBraille()
-                    initRecyclerViewbraille()
+                    translateEspanoltoBraille()
+                  }
+
+                "02"->{
 
                 }
-                "02"->{
+                "10"->{
 
                 }
             }
@@ -89,14 +98,15 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun translateEspaolBraille(){
+    private fun translateEspanoltoBraille(){
 
-        editText.setOnKeyListener { view, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                Log.e("editTestimprim",editText.text.toString())
-
+        buttonflot.setOnClickListener {
+            BrailleProvider.brailleList.clear()
+            var text:String=editText.text.toString().trim().toUpperCase()
+            translatespaintoViewModel.setObtener(text.toUpperCase())
+            translatespaintoViewModel.obtenerMutable.observe(viewLifecycleOwner){
+                if(it !=null){initRecyclerViewbraille()}
             }
-            false
         }
     }
 
@@ -115,8 +125,7 @@ class HomeFragment : Fragment() {
            adapter=BrailleAdapter(BrailleProvider.brailleList)
         }
     }
-
-    fun Spinner1(){
+    private fun Spinner1(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.Lista,
@@ -139,8 +148,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    fun Spinner2(){
+    private fun Spinner2(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.Lista,
@@ -165,10 +173,8 @@ class HomeFragment : Fragment() {
 
 
     }
-
-
         companion object {
             fun newInstance() = HomeFragment()
-        }
+                            }
 
 }

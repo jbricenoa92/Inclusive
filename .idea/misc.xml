@@ -8,8 +8,13 @@
         <entry key="app/src/main/res/drawable/b_lleno.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/b_nada.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/border_raius.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_baseline_looks_one_24_2.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/ic_outline_arrow_back_ios_24.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable/ic_outline_arrow_forward_ios_24.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable/ic_outline_remove_red_eye_24.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable/ic_translate.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.2155" />
         <entry key="app/src/main/res/drawable/upload_background.xml" value="0.126" />
         <entry key="app/src/main/res/drawable/upload_foreground.xml" value="0.126" />
