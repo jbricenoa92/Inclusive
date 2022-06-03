@@ -60,40 +60,36 @@
 
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/getText_home"
-        android:layout_width="269dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="1dp"
-        android:gravity="center"
-        android:hint="Ingrese el texto"
-        android:imeOptions="actionDone"
-        android:maxLength="25"
-        android:textAlignment="center" />
+        <EditText
+            android:id="@+id/getText_home"
+            android:layout_width="315dp"
+            android:layout_height="65dp"
+            android:hint="Ingrese el texto"
+            android:imeOptions="actionDone"
+            android:textAlignment="textStart" />
 
-    <Button
-        android:id="@+id/buttonfab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:contentDescription="enviar"
-        android:src="@drawable/ic_translate"
-        android:text="->"
-        android:textSize="21dp" />
-</LinearLayout>
+        <Button
+            android:id="@+id/buttonfab"
+            android:layout_width="64dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="enviar"
+            android:src="@drawable/ic_translate"
+            android:textSize="21dp"
+            app:icon="@android:drawable/ic_menu_send" />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewshow"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="319dp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
 </LinearLayout>
