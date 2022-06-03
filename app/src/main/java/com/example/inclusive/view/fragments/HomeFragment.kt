@@ -1,6 +1,8 @@
 package com.example.inclusive.view.fragments
 
+
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,40 +10,113 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.inclusive.R
+import com.example.inclusive.model.adapter.braille.BrailleAdapter
+import com.example.inclusive.model.adapter.translate.EspaolAdapter
+import com.example.inclusive.model.adapter.translate.EspaolViewHolder
+import com.example.inclusive.model.provider.braille.BrailleProvider
+import com.example.inclusive.model.provider.espaol.EspaolProvider
 import com.example.inclusive.viewmodel.auth.HomeViewModel
-import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val HomeviewModel: HomeViewModel by activityViewModels()
+    private lateinit var editText:EditText
+    private lateinit var spLista: Spinner
+    private lateinit var spLista2: Spinner
+    var layoutManager:RecyclerView.LayoutManager?=null
+    var adapter:RecyclerView.Adapter<EspaolViewHolder>?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val spLista: Spinner = view.findViewById(R.id.spinner_1)
-        val spLista2: Spinner = view.findViewById(R.id.spinner_2)
-        val edittext: TextView = view.findViewById(R.id.getText_home)
-        val storage = FirebaseStorage.getInstance().getReference()
-        val ONE_MEGABYTE: Long = 1024 * 1024
+        spLista = view.findViewById(R.id.spinner_1)
+        spLista2 = view.findViewById(R.id.spinner_2)
+        editText= view.findViewById(R.id.getText_home)
+        Spinner1()
+        Spinner2()
 
-        edittext.setOnKeyListener { v, keyCode, event ->
+        HomeviewModel.selectedItem1.observe(viewLifecycleOwner) { it ->
+
+            HomeviewModel.selectedItem2.observe(viewLifecycleOwner) { at ->
+
+                translateOptions(it,at)
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+    fun translateOptions(item1: Int?, item2: Int?){
+
+        if(item1 !=null && item2!=null){
+            var option=item1.toString()+item2.toString()
+            Log.e("itemssum",option)
+
+            when(option){
+                "00"->{
+                    initRecyclerViewEspaol()
+                }
+                "01"->{
+                    translateEspaolBraille()
+                    initRecyclerViewbraille()
+
+                }
+                "02"->{
+
+                }
+            }
+
+
+        }
+
+    }
+
+    private fun translateEspaolBraille(){
+
+        editText.setOnKeyListener { view, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                val getSpinner1: String = spLista.selectedItem.toString()
-                val getSpinner2: String = spLista2.selectedItem.toString()
+                Log.e("editTestimprim",editText.text.toString())
 
             }
             false
         }
+    }
 
+
+    private fun initRecyclerViewEspaol(){
+
+        recyclerViewshow.apply {
+            layoutManager=GridLayoutManager(activity,4)
+            adapter=EspaolAdapter(EspaolProvider.espaolList)
+        }
+    }
+    private fun initRecyclerViewbraille(){
+
+        recyclerViewshow.apply {
+            layoutManager=GridLayoutManager(activity,4)
+           adapter=BrailleAdapter(BrailleProvider.brailleList)
+        }
+    }
+
+    fun Spinner1(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.Lista,
@@ -52,6 +127,20 @@ class HomeFragment : Fragment() {
             // Apply the adapter to the spinner
             spLista.adapter = adapter
         }
+
+        spLista.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                HomeviewModel.setitem1(position)
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+               //HomeviewModel.setitem1(p0)
+            }
+        }
+    }
+
+    fun Spinner2(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.Lista,
@@ -63,19 +152,23 @@ class HomeFragment : Fragment() {
             spLista2.adapter = adapter
         }
 
-        spLista.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+        spLista2.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                viewModel.setData(position)
+                HomeviewModel.setItem2(position)
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
         }
-  }
+
+
+    }
+
+
         companion object {
             fun newInstance() = HomeFragment()
         }
-
 
 }

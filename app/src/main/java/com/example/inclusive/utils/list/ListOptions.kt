@@ -1,4 +1,4 @@
-package com.example.inclusive.utils
+package com.example.inclusive.utils.list
 
 class ListOptions {
 

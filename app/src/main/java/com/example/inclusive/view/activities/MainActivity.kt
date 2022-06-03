@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
@@ -28,13 +29,13 @@ import kotlinx.android.synthetic.main.activity_main.*
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
-
+            //Cambio de fragment en navigation Bar
             viewModel.loggerStatus.observe(this, Observer { log ->
                 intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
             })
-
-            var teclado=homeviewModel.selectedItem.observe(this) {
+            //Carga teclado dependiendo del spinner1
+            homeviewModel.selectedItem1 .observe(this) {
                 var fragment: Fragment
                 // Log.e("itimprimir",it.toString())
                 when (it) {
@@ -123,23 +124,7 @@ import kotlinx.android.synthetic.main.activity_main.*
                 .replace(R.id.showteclado, fragment)
                 .commit()
         }
-        private fun loadFragmentnavshowTeclado(fragment: Fragment) {
-            // load fragment
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.showteclado, fragment)
-                .commit()
-        }
 
-        private fun removeFragmentnavshowTeclado() {
-            // load fragment
-            val fragment =supportFragmentManager.findFragmentByTag("uploadname")
-                    fragment?.let {
-                        val transaction=supportFragmentManager.beginTransaction()
-                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        transaction.remove(it).commitAllowingStateLoss()
-                    }
-
-        }
 
 
     }

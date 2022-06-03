@@ -61,7 +61,7 @@
     </LinearLayout>
 
 
-    <TextView
+    <EditText
         android:id="@+id/getText_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,4 +73,10 @@
         android:imeOptions="actionDone"
         android:maxLength="25"
         android:textAlignment="center" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewshow"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="319dp" />
 </LinearLayout>
