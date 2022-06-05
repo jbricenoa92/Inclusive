@@ -1,31 +1,38 @@
 package com.example.inclusive.model.repository
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Bundle
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
+import android.content.Context
+import android.net.Uri
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import com.example.inclusive.model.provider.dagtilolo.Dagtilolo
+import com.example.inclusive.model.provider.dagtilolo.DagtiloloProvider.Companion.datiloloList
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
+import com.google.firebase.storage.ktx.storage
+import com.google.protobuf.Parser
+import java.io.File
 class FirebaseRepository {
 
     private var _firebasestoreMutable=MutableLiveData<Boolean>()
         var firebasestoreMutable:MutableLiveData<Boolean>
         get() = _firebasestoreMutable
 
+    private var _fireMutabledownload=MutableLiveData<String>()
+    var fireMutabledownload:MutableLiveData<String>
+        get() =_fireMutabledownload
+
+
     var storage = Firebase.storage
     val storageRef = storage.reference
 
 
     constructor(){
+
         this.firebasestoreMutable=MutableLiveData()
+        this.fireMutabledownload= MutableLiveData()
     }
 
     fun uploadtoFirebase (imagen:Uri,name:String,context: Context){
@@ -42,14 +49,32 @@ class FirebaseRepository {
                 Toast.makeText(context, "Carga correcta",
                     Toast.LENGTH_SHORT).show()
             }
-
         }else{
-
             Toast.makeText(context, "Campos vacios.",
                 Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun descargaFirebase( name:String,context: Context){
+
+       val islandRef= storageRef.child("signals/$name")
+        val localFile = File.createTempFile("images", "jpg")
+        islandRef.downloadUrl
+            .addOnSuccessListener {
+                if(it !=null){
 
 
+                    val dagtil=Dagtilolo(it.toString(),name)
+                    datiloloList.add(dagtil)
+                    _fireMutabledownload.postValue(it.toString())
+                }
+
+
+                  }
+            .addOnCanceledListener{
+                Toast.makeText(context, "No existe el archivo",
+                    Toast.LENGTH_SHORT).show()
+            }
 
     }
 }

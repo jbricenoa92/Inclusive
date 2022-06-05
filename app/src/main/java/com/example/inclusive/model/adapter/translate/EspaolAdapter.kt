@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inclusive.R.*
 import com.example.inclusive.model.provider.espaol.Espaol
 
-class EspaolAdapter(val EspaolList:List<Espaol>): RecyclerView.Adapter<EspaolViewHolder>() {
+class EspaolAdapter(val listespaol:MutableList<Espaol>): RecyclerView.Adapter<EspaolViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EspaolViewHolder {
        val layoutInflater=LayoutInflater.from(parent.context)
@@ -15,9 +15,9 @@ class EspaolAdapter(val EspaolList:List<Espaol>): RecyclerView.Adapter<EspaolVie
     }
 
     override fun onBindViewHolder(holder: EspaolViewHolder, position: Int) {
-        val item=EspaolList[position]
+        val item=listespaol[position]
         holder.render(item)
     }
 
-    override fun getItemCount(): Int =EspaolList.size
+    override fun getItemCount(): Int =listespaol.size
 }

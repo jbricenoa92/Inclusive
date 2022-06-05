@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inclusive.R
 import com.example.inclusive.model.adapter.braille.BrailleAdapter
+import com.example.inclusive.model.adapter.dagtololo.DagtiloloAdapter
 import com.example.inclusive.model.adapter.translate.EspaolAdapter
 import com.example.inclusive.model.adapter.translate.EspaolViewHolder
 import com.example.inclusive.model.provider.braille.Braille
 import com.example.inclusive.model.provider.braille.BrailleProvider
+import com.example.inclusive.model.provider.dagtilolo.DagtiloloProvider
 import com.example.inclusive.model.provider.espaol.EspaolProvider
+import com.example.inclusive.viewmodel.FirebaseViewModel
 import com.example.inclusive.viewmodel.HomeViewModel
 import com.example.inclusive.viewmodel.TranslatespaintoViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
 
     private val HomeviewModel: HomeViewModel by activityViewModels()
     private val translatespaintoViewModel:TranslatespaintoViewModel by activityViewModels()
+    private val firebaseViewModel:FirebaseViewModel by activityViewModels()
     private lateinit var editText:EditText
     private lateinit var spLista: Spinner
     private lateinit var spLista2: Spinner
@@ -65,13 +69,6 @@ class HomeFragment : Fragment() {
 
     }
 
-
-
-
-
-
-
-
     fun translateOptions(item1: Int?, item2: Int?){
 
         if(item1 !=null && item2!=null){
@@ -80,7 +77,7 @@ class HomeFragment : Fragment() {
 
             when(option){
                 "00"->{
-                    initRecyclerViewEspaol()
+                    translateEspaoltoEspaol()
                 }
                 "01"->{
                     BrailleProvider.brailleList.clear()
@@ -88,7 +85,7 @@ class HomeFragment : Fragment() {
                   }
 
                 "02"->{
-
+                    translateEspaoltoDatololo()
                 }
                 "10"->{
 
@@ -100,18 +97,50 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun translateEspaoltoEspaol(){
+        buttonflot.setOnClickListener {
+            EspaolProvider.espaolList.clear()
+            var text:String=editText.text.toString().trim()
+            translatespaintoViewModel.setListEspaol(text)
+            translatespaintoViewModel.obtenerMutable.observe(viewLifecycleOwner){
+                if(it !=null){
+                    initRecyclerViewEspaol()
+                    editText.text.clear()
+                }
+            }
+
+        }
+    }
+
     private fun translateEspanoltoBraille(){
 
         buttonflot.setOnClickListener {
             BrailleProvider.brailleList.clear()
             var text:String=editText.text.toString().trim().toUpperCase()
-            translatespaintoViewModel.setObtener(text.toUpperCase())
+            translatespaintoViewModel.setListBraille(text.toUpperCase())
             translatespaintoViewModel.obtenerMutable.observe(viewLifecycleOwner){
-                if(it !=null){initRecyclerViewbraille()}
+                if(it !=null){initRecyclerViewbraille()
+                    editText.text.clear()}
             }
         }
     }
 
+
+    private fun translateEspaoltoDatololo(){
+        buttonflot.setOnClickListener {
+            var text:String=editText.text.toString().trim()
+            firebaseViewModel.downloadimage(text,requireContext())
+            firebaseViewModel.downloadMutable.observe(
+                viewLifecycleOwner){
+                if(it!=null){
+                    Log.e("imagen",it)
+
+                    initRecyclerViewDactilolo()
+                }
+            }
+        }
+
+    }
 
     private fun initRecyclerViewEspaol(){
 
@@ -121,11 +150,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerViewbraille(){
+  private fun initRecyclerViewbraille(){
 
         recyclerViewshow.apply {
             layoutManager=GridLayoutManager(activity,4)
            adapter=BrailleAdapter(BrailleProvider.brailleList)
+        }
+    }
+    private fun initRecyclerViewDactilolo(){
+
+        recyclerViewshow.apply {
+            layoutManager=GridLayoutManager(activity,4)
+           adapter=DagtiloloAdapter(DagtiloloProvider.datiloloList)
         }
     }
     private fun Spinner1(){

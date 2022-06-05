@@ -1,4 +1,5 @@
-    package com.example.inclusive.view.activities
+
+package com.example.inclusive.view.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,18 +9,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.example.inclusive.R
+import com.example.inclusive.databinding.FragmentUploadBinding
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.hideKeyboard
 import com.example.inclusive.view.activities.MainActivity.KeyboardktUtils.toggleSoftInput
 import com.example.inclusive.view.fragments.*
 import com.example.inclusive.viewmodel.AuthViewModel
 import com.example.inclusive.viewmodel.HomeViewModel
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-    class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
         private val viewModel: AuthViewModel by viewModels()
         private val homeviewModel: HomeViewModel by viewModels()
@@ -28,10 +28,10 @@ import kotlinx.android.synthetic.main.activity_main.*
         super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
             //Cambio de fragment en navigation Bar
-            viewModel.loggerStatus.observe(this, Observer { log ->
+            viewModel.loggerStatus.observe(this) {
                 intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
-            })
+            }
             //Carga teclado dependiendo del spinner1
             homeviewModel.selectedItem1 .observe(this) {
                 var fragment: Fragment
@@ -57,15 +57,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
        }
 
-
-
         private fun navigationBar() {
             buttonnavigationView.setOnItemSelectedListener { view ->
                 var fragment: Fragment
                 when (view.itemId) {
                     R.id.navigation_upload -> {
                         fragment = upload_Fragment()
-
                         loadFragmentnavBar(fragment)
 
                         true
@@ -122,8 +119,5 @@ import kotlinx.android.synthetic.main.activity_main.*
                 .replace(R.id.showteclado, fragment)
                 .commit()
         }
-
-
-
-    }
+  }
 

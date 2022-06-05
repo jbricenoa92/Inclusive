@@ -36,7 +36,8 @@
         <entry key="app/src/main/res/layout/fragment_upload_name.xml" value="0.20521590423257802" />
         <entry key="app/src/main/res/layout/fragment_vacio.xml" value="0.1078125" />
         <entry key="app/src/main/res/layout/item_braille.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_espaol.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_dagtilo.xml" value="0.2424112868747328" />
+        <entry key="app/src/main/res/layout/item_espaol.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_imagefirebase.xml" value="0.18" />
         <entry key="app/src/main/res/layout/teclado_braile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/teclado_dactilologico.xml" value="0.25" />

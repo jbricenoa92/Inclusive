@@ -14,29 +14,27 @@ import com.google.firebase.storage.ktx.storage
 
 class FirebaseViewModel: ViewModel {
 
+        private val file=1
         private var firebaseRepository:FirebaseRepository
 
-        private var _uploadMutable:MutableLiveData<Boolean>
-        val uploadMutable:MutableLiveData<Boolean>
-            get() =_uploadMutable
+        private var _downloadMutable:MutableLiveData<String>
+        val downloadMutable:MutableLiveData<String>
+            get() =_downloadMutable
 
-    private val file=1
-    private val database= Firebase.storage
-    private val ref= database.reference
-
-
+    private var _uploadMutable:MutableLiveData<Boolean>
+    val uploadMutable:MutableLiveData<Boolean>
+        get() =_uploadMutable
 
         constructor(){
             firebaseRepository= FirebaseRepository()
             this._uploadMutable=firebaseRepository.firebasestoreMutable
+            this._downloadMutable=firebaseRepository.fireMutabledownload
         }
 
-    fun getimage(activity: Activity, bundle: Bundle?){
+    fun downloadimage(name:String,context: Context){
+        if(name!=null && context !=null){
+        firebaseRepository.descargaFirebase(name,context)
 
-        if(bundle!=null){
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "*/*"
-            ActivityCompat.startActivityForResult(activity, intent, file, bundle)
         }
     }
 

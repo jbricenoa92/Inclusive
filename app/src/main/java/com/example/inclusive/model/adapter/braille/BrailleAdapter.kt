@@ -8,7 +8,6 @@ import com.example.inclusive.model.provider.braille.Braille
 
 class BrailleAdapter(val listBraille:MutableList<Braille>):RecyclerView.Adapter<BrailleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrailleViewHolder {
-
         val layoutInflater= LayoutInflater.from(parent.context)
         return BrailleViewHolder(layoutInflater.inflate(R.layout.item_braille,parent,false))
     }

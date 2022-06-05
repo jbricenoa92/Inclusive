@@ -59,21 +59,21 @@ class FragmentAuth : Fragment() {
 
 
        if(view !=null ){
-            viewModel.getuserData.observe(viewLifecycleOwner,Observer<FirebaseUser>{firebaseUser->
-                var authemailt=auth_emailt.text.toString()
+            viewModel.getuserData.observe(viewLifecycleOwner) { firebaseUser ->
+                var authemailt = auth_emailt.text.toString()
 
-                    if(firebaseUser.email==authemailt){
+                if (firebaseUser.email == authemailt) {
 
-                        val fragment = HomeFragment()
-                        val transaction =  fragmentManager?.beginTransaction()
+                    val fragment = HomeFragment()
+                    val transaction = fragmentManager?.beginTransaction()
 
-                        intent = Intent(this.context, MainActivity::class.java).apply {
-                            putExtra("Correo", firebaseUser.email.toString())
-                        }
-                        startActivity(intent)
+                    intent = Intent(this.context, MainActivity::class.java).apply {
+                        putExtra("Correo", firebaseUser.email.toString())
                     }
-          })
-        }
+                    startActivity(intent)
+                }
+            }
+       }
 
         button_ingresar.setOnClickListener(View.OnClickListener {
             var authemailt=auth_emailt.text.toString()

@@ -10,7 +10,7 @@ class EspaolViewHolder(view: View):RecyclerView.ViewHolder(view)  {
 
     val espaol=view.findViewById<TextView>(R.id.item_spaol)
     fun render(espaolModel:Espaol){
-        espaol.text=espaolModel.simbolo
+        espaol.text=espaolModel.simbol
     }
 
 }
