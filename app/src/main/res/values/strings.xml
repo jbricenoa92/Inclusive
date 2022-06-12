@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Inclusive</string>
-    <array name="Lista">
+    <array name="Lista1">
         <item>Español</item>
+    </array>
+    <array name="Lista2">
         <item>Braille</item>
         <item>Dactolológico</item>
     </array>

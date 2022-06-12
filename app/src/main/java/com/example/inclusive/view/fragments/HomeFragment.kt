@@ -77,24 +77,14 @@ class HomeFragment : Fragment() {
 
             when(option){
                 "00"->{
-                    translateEspaoltoEspaol()
-                }
-                "01"->{
                     BrailleProvider.brailleList.clear()
                     translateEspanoltoBraille()
-                  }
-
-                "02"->{
+                }
+                "01"->{
                     translateEspaoltoDatololo()
-                }
-                "10"->{
-
-                }
+                  }
             }
-
-
         }
-
     }
 
     private fun translateEspaoltoEspaol(){
@@ -116,6 +106,7 @@ class HomeFragment : Fragment() {
 
         buttonflot.setOnClickListener {
             BrailleProvider.brailleList.clear()
+            DagtiloloProvider.datiloloList.clear()
             var text:String=editText.text.toString().trim().toUpperCase()
             translatespaintoViewModel.setListBraille(text.toUpperCase())
             translatespaintoViewModel.obtenerMutable.observe(viewLifecycleOwner){
@@ -128,14 +119,16 @@ class HomeFragment : Fragment() {
 
     private fun translateEspaoltoDatololo(){
         buttonflot.setOnClickListener {
+            BrailleProvider.brailleList.clear()
+            DagtiloloProvider.datiloloList.clear()
             var text:String=editText.text.toString().trim()
             firebaseViewModel.downloadimage(text,requireContext())
             firebaseViewModel.downloadMutable.observe(
                 viewLifecycleOwner){
                 if(it!=null){
                     Log.e("imagen",it)
-
                     initRecyclerViewDactilolo()
+                    editText.text.clear()
                 }
             }
         }
@@ -160,14 +153,14 @@ class HomeFragment : Fragment() {
     private fun initRecyclerViewDactilolo(){
 
         recyclerViewshow.apply {
-            layoutManager=GridLayoutManager(activity,4)
+            layoutManager=GridLayoutManager(activity,3)
            adapter=DagtiloloAdapter(DagtiloloProvider.datiloloList)
         }
     }
     private fun Spinner1(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
-            R.array.Lista,
+            R.array.Lista1,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
@@ -190,7 +183,7 @@ class HomeFragment : Fragment() {
     private fun Spinner2(){
         ArrayAdapter.createFromResource(
             this.requireContext(),
-            R.array.Lista,
+            R.array.Lista2,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
